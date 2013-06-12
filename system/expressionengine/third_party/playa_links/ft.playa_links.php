@@ -59,10 +59,11 @@ class Playa_links_ft extends EE_Fieldtype
         $this->EE->load->library('table');
 
         // Variables
-        $vars['children']   = array();
-        $vars['parents']    = array();
-        $vars['field_name'] = $this->field_name;
-        $entry_id           = $this->EE->input->get('entry_id');
+        $vars['children']    = array();
+        $vars['parents']     = array();
+        $vars['field_name']  = $this->field_name;
+        $vars['target_type'] = $this->settings['target'];
+        $entry_id            = $this->EE->input->get('entry_id');
 
         // Objects
         $children = $this->EE->play_on->get_children($entry_id);
