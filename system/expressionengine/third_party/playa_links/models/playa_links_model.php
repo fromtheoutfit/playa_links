@@ -84,6 +84,28 @@ class Playa_links_model
         return $this->EE->db->get();
     }
 
+    /**
+     * Check to see if Playa is installed
+     *
+     * @access public
+     * @return boolean
+     */
+
+    public function playa_installed()
+    {
+        $this->EE->db->where('name', 'playa');
+        $q = $this->EE->db->get('fieldtypes');
+
+        if ($q->num_rows() == 1)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
 
 }
 

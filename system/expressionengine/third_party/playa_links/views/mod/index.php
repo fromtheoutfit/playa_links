@@ -1,6 +1,6 @@
 <?php
-$data = form_input($field_name, 1, 'id="'.$field_name.'" style="display: none;"');
-$target = '';
+$data        = form_input($field_name, 1, 'id="' . $field_name . '" style="display: none;"');
+$target      = '';
 
 if ($target_type == '_blank')
 {
@@ -12,18 +12,23 @@ if (sizeof($children) > 0)
 {
     // Start the table
     $this->table->set_template($cp_table_template);
-    $this->table->set_heading(lang('playa_links_child_entries'));
+    $this->table->set_heading($child_language);
 
     foreach ($children as $channel => $entries)
     {
-        $this->table->add_row('<strong>' . $channel . '</strong>');
+        $children_data = '';
+        $children_data .= '<h4 style="margin-left: 0;">' . $channel . '</h4>';
+        $children_data .= '<ul>';
 
         // Loop through the entries
         foreach ($entries as $entry)
         {
-            $this->table->add_row('<a href="' . html_entity_decode(BASE) . AMP . 'C=content_publish' . AMP . 'M=entry_form' . AMP . 'channel_id=' . $entry['channel_id'] . '&entry_id=' . $entry['entry_id'] . '"' . $target . '>' . $entry['title'] . '</a>');
+            $children_data .= '<li><a href="' . html_entity_decode(BASE) . AMP . 'C=content_publish' . AMP . 'M=entry_form' . AMP . 'channel_id=' . $entry['channel_id'] . '&entry_id=' . $entry['entry_id'] . '"' . $target . '>' . $entry['title'] . '</a></li>';
         }
+        $children_data .= '</ul>';
+        $this->table->add_row($children_data);
     }
+
 
     $data .= $this->table->generate();
 }
@@ -33,17 +38,22 @@ if (sizeof($parents) > 0)
 {
     // Start the table
     $this->table->set_template($cp_table_template);
-    $this->table->set_heading(lang('playa_links_parent_entries'));
+    $this->table->set_heading($parent_language);
 
     foreach ($parents as $channel => $entries)
     {
-        $this->table->add_row('<strong>' . $channel . '</strong>');
+        $parent_data = '';
+        $parent_data .= '<h4 style="margin-left: 0;">' . $channel . '</h4>';
+        $parent_data .= '<ul>';
 
         // Loop through the entries
         foreach ($entries as $entry)
         {
-            $this->table->add_row('<a href="' . html_entity_decode(BASE) . AMP . 'C=content_publish' . AMP . 'M=entry_form' . AMP . 'channel_id=' . $entry['channel_id'] . '&entry_id=' . $entry['entry_id'] . '"' . $target . '>' . $entry['title'] . '</a>');
+            $parent_data .= '<li><a href="' . html_entity_decode(BASE) . AMP . 'C=content_publish' . AMP . 'M=entry_form' . AMP . 'channel_id=' . $entry['channel_id'] . '&entry_id=' . $entry['entry_id'] . '"' . $target . '>' . $entry['title'] . '</a></li>';
         }
+
+        $parent_data .= '</ul>';
+        $this->table->add_row($parent_data);
     }
 
     $data .= $this->table->generate();
