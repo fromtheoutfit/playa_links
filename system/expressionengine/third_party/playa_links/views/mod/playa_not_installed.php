@@ -1,0 +1,1 @@
+<p>You must install <a href="http://pixelandtonic.com/playa">Pixel & Tonic's Playa</a> in order to use this fieldtype.</p>
