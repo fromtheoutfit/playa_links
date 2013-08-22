@@ -1,0 +1,6 @@
+.DS_Store
+.DS\_Store
+*
+!system/expressionengine/third_party/playa_links
+!README.md
+!.gitignore
