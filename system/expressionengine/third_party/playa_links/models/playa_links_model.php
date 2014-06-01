@@ -56,6 +56,7 @@ class Playa_links_model
         $this->EE->db->join('channels AS c', 'c.channel_id = ct.channel_id');
         $this->EE->db->where('pr.parent_entry_id', $entry_id);
         $this->EE->db->where('ct.site_id', $this->site_id);
+        $this->EE->db->order_by('pr.rel_order', 'asc');
         $this->EE->db->order_by('c.channel_title', 'asc');
         $this->EE->db->order_by('ct.title', 'asc');
 
